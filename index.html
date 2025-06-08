@@ -21,7 +21,7 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1231506390925244');
+    fbq('init', '1231506390925244'); // Substitua pelo seu Pixel ID real
     fbq('track', 'PageView');
   </script>
   <noscript>
@@ -74,7 +74,6 @@
     <h1>Transforme seu sorriso com o Gel Dental que clareia de verdade!</h1>
     <p>O <strong>Pro White</strong> da Hinode é ideal para quem deseja dentes mais brancos de forma natural, segura e sem sensibilidade.</p>
 
-    <!-- Selo de garantia Hinode -->
     <div class="guarantee-section">
       <img src="https://th.bing.com/th/id/OIP.QxihKBtP92bfAbqlZDM0sAAAAA?r=0&rs=1&pid=ImgDetMain" alt="Logo Hinode" />
       <span class="guarantee-text">Garantia de satisfação Hinode: produto original e autenticado</span>
@@ -90,7 +89,6 @@
       </ul>
     </section>
 
-    <!-- Provas sociais -->
     <div class="social-proof">
       <h3>Veja resultados reais de quem usou o Gel Pro White</h3>
       <img src="https://http2.mlstatic.com/gel-dental-hinode-pro-white-dentes-brancos-90g-promoco-D_NQ_NP_313115-MLB25204344539_122016-F.jpg" alt="Antes e depois após 6 meses de uso do Gel Dental Pro White" />
@@ -106,7 +104,6 @@
       </a>
     </div>
 
-    <!-- Temporizador de urgência -->
     <div class="timer-urgency" id="timer-urgency">
       Oferta especial acaba em: <span id="timer">03:00</span>
     </div>
@@ -114,7 +111,6 @@
       ⚠️ Promoção válida somente hoje! Últimas unidades disponíveis!
     </div>
 
-    <!-- Vídeo de confiança -->
     <div class="video-section">
       <iframe src="https://www.youtube.com/embed/6KORuRsHNw4" title="ProWhite Hinode Depoimento" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -137,6 +133,7 @@
       <p style="text-align:center;font-size:14px;margin-top:30px;color:#999;">Hinode não garante resultados individuais. Consulte sempre seu dentista.</p>
     </footer>
   </main>
+
   <script>
     // Temporizador regressivo de 3 minutos
     let timerMinutes = 3;
@@ -170,6 +167,13 @@
 
     updateTimerDisplay();
     setTimeout(tick, 1000);
+
+    // RASTREAMENTO DE CLIQUES NO WHATSAPP
+    document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+      btn.addEventListener('click', function () {
+        fbq('track', 'Contact');
+      });
+    });
   </script>
 </body>
 </html>

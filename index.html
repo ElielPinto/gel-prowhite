@@ -20,7 +20,10 @@
     .button:focus,.button:hover{background:#0ea5e9;outline:2px solid #0ea5e9;}
     .testimonials{font-style:italic;color:#555;}
     .countdown{background:#fee2e2;color:#b91c1c;padding:10px;border-radius:5px;font-weight:bold;text-align:center;}
-    .contact{background:#e0fbe8;color:#065f46;padding:12px;margin:25px 0 10px 0;border-radius:8px;text-align:center;font-weight:bold;}
+    .timer-urgency{background:#fff3cd;color:#d97706;padding:12px;margin:18px 0 6px 0;border-radius:8px;text-align:center;font-weight:bold;font-size:20px;letter-spacing:1px;}
+    .guarantee-badge{display:flex;align-items:center;justify-content:center;gap:12px;background:#e0fbe8;border:2px solid #047857;border-radius:8px;padding:12px;margin:20px 0;}
+    .guarantee-badge img{width:60px;height:60px;object-fit:contain;}
+    .guarantee-text{font-weight:bold;color:#047857;font-size:17px;}
     @media (max-width:640px){.container{padding:10px;}}
   </style>
 </head>
@@ -32,6 +35,13 @@
     </header>
     <h1>Transforme seu sorriso com o Gel Dental que clareia de verdade!</h1>
     <p>O <strong>Pro White</strong> da Hinode é ideal para quem deseja dentes mais brancos de forma natural, segura e sem sensibilidade.</p>
+
+    <!-- Selo de garantia Hinode -->
+    <div class="guarantee-badge">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Seal_of_approval.svg" alt="Selo de Garantia Hinode" />
+      <span class="guarantee-text">Produto original com garantia de satisfação Hinode</span>
+    </div>
+
     <section class="benefits" aria-label="Benefícios do Pro White">
       <ul>
         <li>✨ Clareamento suave e eficaz</li>
@@ -41,8 +51,13 @@
         <li>📘 Bônus: e-book com dicas naturais de clareamento</li>
       </ul>
     </section>
+
+    <!-- Temporizador de urgência -->
+    <div class="timer-urgency" id="timer-urgency">
+      Oferta especial acaba em: <span id="timer">03:00</span>
+    </div>
     <div class="countdown" role="alert">
-      ⚠️ Promoção válida somente hoje! Últimas 100 unidades disponíveis!
+      ⚠️ Promoção válida somente hoje! Últimas unidades disponíveis!
     </div>
     <a href="https://wa.me/5511955715407?text=Quero%20comprar%20o%20Gel%20Dental%20Pro%20White!" class="button" target="_blank" rel="noopener">Quero meu sorriso branco agora</a>
     <div class="contact">
@@ -59,5 +74,39 @@
       <p style="text-align:center;font-size:14px;margin-top:30px;color:#999;">Hinode não garante resultados individuais. Consulte sempre seu dentista.</p>
     </footer>
   </main>
+  <script>
+    // Temporizador regressivo de 3 minutos
+    let timerMinutes = 3;
+    let timerSeconds = 0;
+    const timerDisplay = document.getElementById("timer");
+    const urgencyDiv = document.getElementById("timer-urgency");
+
+    function updateTimerDisplay() {
+      const min = timerMinutes.toString().padStart(2, "0");
+      const sec = timerSeconds.toString().padStart(2, "0");
+      timerDisplay.textContent = `${min}:${sec}`;
+    }
+
+    function tick() {
+      if (timerMinutes === 0 && timerSeconds === 0) {
+        timerDisplay.textContent = "00:00";
+        urgencyDiv.textContent = "⚠️ Última chance! Oferta encerrada!";
+        urgencyDiv.style.background = "#fee2e2";
+        urgencyDiv.style.color = "#b91c1c";
+        return;
+      }
+      if (timerSeconds === 0) {
+        timerMinutes -= 1;
+        timerSeconds = 59;
+      } else {
+        timerSeconds -= 1;
+      }
+      updateTimerDisplay();
+      setTimeout(tick, 1000);
+    }
+
+    updateTimerDisplay();
+    setTimeout(tick, 1000);
+  </script>
 </body>
 </html>
